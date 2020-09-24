@@ -1,5 +1,6 @@
 package org.launchcode.techjobs_oo;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Job {
@@ -52,6 +53,43 @@ public class Job {
         return Objects.hash(id, name, employer, location, positionType, coreCompetency);
     }
 
+    @Override
+    public String toString() {
+
+//        ArrayList<Object> jobFieldList = new ArrayList<>();
+//            jobFieldList.add(this.getEmployer());
+//            jobFieldList.add(this.getLocation());
+//            jobFieldList.add(this.getPositionType());
+//            jobFieldList.add(this.getCoreCompetency());
+
+        if (this.getName().trim().equals("")) {
+            this.setName("Data not available");
+        }
+
+        if (this.getEmployer().getValue().trim().equals("")) {
+            this.getEmployer().setValue("Data not available");
+        }
+
+        if (this.getLocation().getValue().trim().equals("")) {
+                this.getLocation().setValue("Data not available");
+        }
+
+        if (this.getPositionType().getValue().trim().equals("")) {
+            this.getPositionType().setValue("Data not available");
+        }
+
+        if (this.getCoreCompetency().getValue().trim().equals("")) {
+            this.getCoreCompetency().setValue("Data not available");
+        }
+
+        return  "\nID: " + id +
+                "\nName: " + name +
+                "\nEmployer: " + employer +
+                "\nLocation: " + location +
+                "\nPosition Type: " + positionType +
+                "\nCore Competency: " + coreCompetency +
+                '\n';
+    }
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.

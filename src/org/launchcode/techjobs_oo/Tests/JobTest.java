@@ -49,14 +49,30 @@ public class JobTest {
         assertFalse(newJob1.equals(newJob2));
     }
 
+    @Test
+    public void testBlankLines(){
+        Job newJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String newJobString = newJob.toString();
+        char firstChar = newJobString.charAt(0);
+        char lastChar = newJobString.charAt(newJobString.length() - 1);
+        assertTrue((firstChar == '\n') && (firstChar == lastChar));
+    }
 
+    @Test
+    public void testLabelsAndFields() {
+        Job newJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String newJobString = newJob.toString();
+        String output = String.format("\nID: %d" + "\nName: %s" + "\nEmployer: %s" + "\nLocation: %s" + "\nPosition Type: %s" + "\nCore Competency: %s\n", newJob.getId(), newJob.getName(), newJob.getEmployer(), newJob.getLocation(), newJob.getPositionType(), newJob.getCoreCompetency());
+        assertEquals(output, newJobString);
+    }
 
-
-
-
-
-
-
-
+    @Test
+    public void testForDataNotAvailable() {
+        Job newJob = new Job("", new Employer("ACME"), new Location(""), new PositionType(""), new CoreCompetency(""));
+        String newJobString = newJob.toString();
+        String output = String.format("\nID: %d" + "\nName: %s" + "\nEmployer: %s" + "\nLocation: %s" + "\nPosition Type: %s" + "\nCore Competency: %s\n", newJob.getId(), "Data not available", newJob.getEmployer(), "Data not available", "Data not available", "Data not available");
+        assertEquals(output, newJobString);
+        System.out.println(newJobString);
+    }
 
 }
